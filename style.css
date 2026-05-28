@@ -1,0 +1,1479 @@
+/* ==========================================================================
+   DESIGN SYSTEM: Serene Grace (세련된 은혜)
+   Custom CSS for contemporary Korean church digital bulletin
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Root Variables & Theme Tokens
+   -------------------------------------------------------------------------- */
+:root {
+  /* Brand Palette (Sage Green Spectrum) */
+  --color-primary: #3f6355;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #587c6d;
+  --color-on-primary-container: #f5fff8;
+  --color-inverse-primary: #a8cfbd;
+  
+  --color-secondary: #486456;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #caead8;
+  --color-on-secondary-container: #4e6b5c;
+
+  --color-tertiary: #4b605c;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #637975;
+  --color-on-tertiary-container: #f4fffc;
+
+  /* Neutral Surface Colors */
+  --color-background: #f7faf9;
+  --color-on-background: #181c1c;
+  --color-surface: #f7faf9;
+  --color-on-surface: #181c1c;
+  --color-on-surface-variant: #414844;
+  
+  /* Elevational Surfaces */
+  --color-surface-lowest: #ffffff; /* Card backgrounds */
+  --color-surface-low: #f1f4f3;
+  --color-surface-container: #ebeeed;
+  --color-surface-high: #e6e9e8;
+  --color-surface-highest: #e0e3e2;
+
+  /* Validation & Alerts */
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+  --color-success: #2e7d32;
+
+  /* Borders & Outlines */
+  --color-outline: #717974;
+  --color-outline-variant: #c1c8c3;
+
+  /* Typography Fonts */
+  --font-headline: 'Gowun Dodum', sans-serif;
+  --font-body: 'Gowun Batang', serif;
+
+  /* Spacing Grid (4px/8px base system) */
+  --spacing-margin-page: 20px;
+  --spacing-gutter-card: 16px;
+  --spacing-stack-gap: 36px;
+  --spacing-card-pad: 24px;
+
+  /* Border Radii */
+  --radius-sm: 0.25rem;     /* 4px */
+  --radius-md: 0.75rem;     /* 12px */
+  --radius-lg: 1rem;       /* 16px */
+  --radius-xl: 1.5rem;      /* 24px */
+  --radius-full: 9999px;
+
+  /* Elevation Shadows */
+  --shadow-level-1: 0 8px 24px rgba(107, 144, 128, 0.06), 0 2px 6px rgba(107, 144, 128, 0.04);
+  --shadow-level-2: 0 12px 32px rgba(107, 144, 128, 0.12), 0 4px 12px rgba(107, 144, 128, 0.06);
+  --shadow-inset-1: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+
+  /* Animation Transitions */
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2. Global Reset & Base Styles
+   -------------------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-on-background);
+  background-color: var(--color-background);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Scrollbar Customization */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-surface-low);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-outline-variant);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-outline);
+}
+
+/* App Container Layout */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  max-width: 480px; /* Default mobile view centered on desktop */
+  margin: 0 auto;
+  background-color: var(--color-background);
+  background-image: linear-gradient(to bottom, #d1ded9 0%, #e8f0ed 150px, #f7faf9 350px);
+  background-repeat: no-repeat;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.03);
+}
+
+/* --------------------------------------------------------------------------
+   3. Header Styling
+   -------------------------------------------------------------------------- */
+.app-header {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  z-index: 100;
+  background-color: transparent;
+  border-bottom: 1px solid transparent;
+  padding: 12px var(--spacing-margin-page);
+  height: 56px;
+  transition: height var(--transition-normal), background-color var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.app-header.header-large {
+  height: 140px;
+}
+
+/* Header scrolled state (solid background) */
+.app-header.header-scrolled {
+  background-color: rgba(247, 250, 249, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-outline-variant);
+  box-shadow: var(--shadow-level-1);
+}
+
+/* Header dark state on Worship tab top */
+.app-header.header-transparent-dark .brand-name {
+  color: #ffffff;
+}
+
+.app-header.header-transparent-dark .brand-sub {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  position: relative;
+}
+
+/* Logo styling */
+.header-brand {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: left var(--transition-normal) cubic-bezier(0.34, 1.56, 0.64, 1), 
+              transform var(--transition-normal) cubic-bezier(0.34, 1.56, 0.64, 1), 
+              gap var(--transition-normal),
+              top var(--transition-normal);
+}
+
+.app-header:not(.header-large) .header-brand {
+  left: 0;
+  transform: translate(0, -50%);
+  gap: 10px;
+}
+
+.church-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background-color: #ffffff;
+  border: 1.5px solid var(--color-outline-variant);
+  object-fit: cover;
+  filter: drop-shadow(0 2px 4px rgba(63, 99, 85, 0.12));
+  animation: logo-pulse 8s infinite ease-in-out;
+  transition: width var(--transition-normal), height var(--transition-normal), border-color var(--transition-normal);
+}
+
+.app-header.header-large .church-logo {
+  width: 52px;
+  height: 52px;
+  border-width: 2px;
+  border-color: #ffffff;
+}
+
+.brand-text-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name {
+  font-family: var(--font-headline);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: -0.01em;
+  transition: font-size var(--transition-normal), color var(--transition-normal);
+}
+
+.app-header.header-large .brand-name {
+  font-size: 26px;
+}
+
+.brand-sub {
+  display: none; /* Hidden on mobile to match style requirements */
+}
+
+/* Navigation tabs in Header (Desktop only) */
+.desktop-nav {
+  display: none; /* Mobile first */
+}
+
+/* Header Utilities */
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-on-surface-variant);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.icon-btn:hover {
+  background-color: var(--color-surface-container);
+  color: var(--color-primary);
+}
+
+/* --------------------------------------------------------------------------
+   4. Main Contents & Transitions
+   -------------------------------------------------------------------------- */
+.app-main {
+  flex-grow: 1;
+  padding: var(--spacing-stack-gap) var(--spacing-margin-page) 100px var(--spacing-margin-page); /* Extra bottom padding for nav */
+  position: relative;
+}
+
+.tab-content {
+  display: none;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity var(--transition-slow) ease-out, transform var(--transition-slow) ease-out;
+  padding-top: 140px; /* Space for large mobile header */
+}
+
+#tab-worship.tab-content {
+  padding-top: 0; /* Worship tab bleeds behind transparent header, no spacer needed */
+}
+
+.tab-content.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.grid-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-stack-gap);
+}
+
+.section-main-title {
+  font-family: var(--font-headline);
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--color-on-background);
+  margin-bottom: 8px;
+  position: relative;
+  display: inline-block;
+}
+
+.section-main-title::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 24px;
+  height: 3px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary);
+}
+
+.section-subtitle {
+  font-size: 14px;
+  color: var(--color-on-surface-variant);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   5. Standard Card Layout & Typography
+   -------------------------------------------------------------------------- */
+.card {
+  background-color: var(--color-surface-lowest);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-level-1);
+  padding: var(--spacing-card-pad);
+  border: 1px solid rgba(107, 144, 128, 0.05);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-level-2);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.card-header-icon {
+  background-color: var(--color-surface-low);
+  color: var(--color-primary);
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-title {
+  font-family: var(--font-headline);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+/* --------------------------------------------------------------------------
+   6. TAB 1: 예배 (Worship) Details
+   -------------------------------------------------------------------------- */
+/* Hero Banner */
+.hero-banner {
+  position: relative;
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+  overflow: hidden;
+  background: linear-gradient(135deg, #1f362b 0%, #3a5c4f 50%, #4a7565 100%);
+  padding: 150px 24px 40px 24px; /* Generous top padding for header space */
+  margin-top: calc(var(--spacing-stack-gap) * -1); /* Cancel main container top margin */
+  margin-left: calc(var(--spacing-margin-page) * -1); /* Cancel main container left margin */
+  margin-right: calc(var(--spacing-margin-page) * -1); /* Cancel main container right margin */
+  box-shadow: var(--shadow-level-1);
+  color: #ffffff;
+}
+
+/* Abstract Wavy Glowing background inside Hero */
+.hero-banner::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -20%;
+  width: 140%;
+  height: 200%;
+  background: radial-gradient(circle at 70% 30%, rgba(196, 235, 217, 0.25) 0%, transparent 60%);
+  filter: blur(30px);
+  pointer-events: none;
+}
+
+.hero-banner::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3%3Cpath fill='%23587c6d' fill-opacity='0.15' d='M0,192L80,192C160,192,320,192,480,181.3C640,171,800,149,960,154.7C1120,160,1280,192,1360,208L1440,224L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+  background-size: cover;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-badge {
+  display: inline-block;
+  font-family: var(--font-headline);
+  font-size: 11px;
+  font-weight: 500;
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  margin-bottom: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  letter-spacing: 0.05em;
+  color: #ffffff;
+}
+
+.hero-title {
+  font-family: var(--font-headline);
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.hero-subtitle {
+  font-size: 15px;
+  opacity: 0.85;
+  margin-bottom: 14px;
+}
+
+.hero-description {
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.8;
+}
+
+/* Scripture Card */
+.scripture-meta {
+  font-family: var(--font-headline);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 12px;
+  background-color: var(--color-surface-low);
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: var(--radius-sm);
+}
+
+.scripture-quote {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--color-on-surface-variant);
+  border-left: 3px solid var(--color-inverse-primary);
+  padding-left: 14px;
+  margin-left: 2px;
+  text-align: justify;
+}
+
+/* Order of Worship Card */
+.order-list {
+  list-style: none;
+}
+
+.order-list li {
+  display: flex;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px dashed var(--color-outline-variant);
+}
+
+.order-list li:last-child {
+  border-bottom: none;
+}
+
+.order-item {
+  font-family: var(--font-headline);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-on-surface);
+  flex-shrink: 0;
+}
+
+.order-divider {
+  flex-grow: 1;
+  margin: 0 16px;
+}
+
+.order-leader {
+  font-size: 14px;
+  color: var(--color-on-surface-variant);
+  flex-shrink: 0;
+}
+
+.highlight-text {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+/* Sermon Notes Card */
+.notes-sermon-title {
+  font-family: var(--font-headline);
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.notes-sermon-verse {
+  font-size: 12px;
+  color: var(--color-on-surface-variant);
+  margin-bottom: 20px;
+}
+
+.notes-fill-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.notes-fill-item {
+  display: flex;
+  gap: 8px;
+}
+
+.notes-fill-item .bullet {
+  font-family: var(--font-headline);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-top: 2px;
+}
+
+.fill-text {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--color-on-surface-variant);
+}
+
+.input-blank-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin: 0 4px;
+}
+
+/* Ghost line input style for notebook look */
+.ghost-input {
+  border: none;
+  border-bottom: 2px solid var(--color-outline-variant);
+  background: transparent;
+  width: 90px;
+  padding: 0 8px;
+  text-align: center;
+  font-family: var(--font-headline);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-primary);
+  border-radius: 0;
+  transition: border-color var(--transition-fast);
+}
+
+.ghost-input:focus {
+  outline: none;
+  border-bottom-color: var(--color-primary);
+}
+
+.ghost-input::placeholder {
+  color: transparent;
+}
+
+/* Green feedback state for correct answers */
+.ghost-input.correct {
+  border-bottom-color: var(--color-success);
+  color: var(--color-success);
+}
+
+/* Red feedback state for incorrect answers */
+.ghost-input.incorrect {
+  border-bottom-color: var(--color-error);
+  color: var(--color-error);
+}
+
+.hint-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-outline-variant);
+  padding: 4px;
+  margin-left: 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.hint-btn:hover {
+  color: var(--color-primary);
+  background-color: var(--color-surface-low);
+}
+
+.hint-btn.active {
+  color: var(--color-primary);
+}
+
+.notes-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.notes-feedback-message {
+  margin-top: 14px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+/* --------------------------------------------------------------------------
+   7. TAB 2: 소식 (News) Details
+   -------------------------------------------------------------------------- */
+.card-announcement {
+  border-left: 4px solid var(--color-primary);
+}
+
+.card-badge-wrapper {
+  margin-bottom: 12px;
+}
+
+.badge {
+  font-family: var(--font-headline);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  display: inline-block;
+}
+
+.badge-primary {
+  background-color: var(--color-secondary-container);
+  color: var(--color-on-secondary-container);
+}
+
+.badge-secondary {
+  background-color: var(--color-surface-container);
+  color: var(--color-on-surface-variant);
+}
+
+.announcement-title {
+  font-family: var(--font-headline);
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--color-on-surface);
+  margin-bottom: 8px;
+}
+
+.announcement-body {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-on-surface-variant);
+  margin-bottom: 16px;
+  text-align: justify;
+}
+
+.announcement-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--color-outline);
+}
+
+.announcement-meta svg {
+  opacity: 0.8;
+}
+
+/* Prayer requests */
+.prayer-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.prayer-list li {
+  display: flex;
+  gap: 14px;
+}
+
+.prayer-icon-wrapper {
+  background-color: var(--color-surface-low);
+  color: var(--color-primary);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.prayer-text-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.prayer-subject {
+  font-family: var(--font-headline);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-on-surface);
+  margin-bottom: 4px;
+}
+
+.prayer-detail {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-on-surface-variant);
+}
+
+/* Gallery styling */
+.gallery-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.gallery-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.gallery-more-btn {
+  background: none;
+  border: none;
+  font-family: var(--font-headline);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-outline);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.gallery-more-btn:hover {
+  color: var(--color-primary);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.gallery-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.gallery-image-container {
+  aspect-ratio: 1;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+  background-color: var(--color-surface-low);
+}
+
+.gallery-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-caption {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-on-surface-variant);
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   8. TAB 3: 헌금 (Giving) Details
+   -------------------------------------------------------------------------- */
+.card-giving-banner {
+  background: linear-gradient(135deg, var(--color-secondary-container) 0%, #dcf0e5 100%);
+  border: none;
+}
+
+.centered-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 16px 8px;
+}
+
+.giving-heart-icon {
+  margin-bottom: 16px;
+  animation: heart-beat 3s infinite ease-in-out;
+}
+
+.giving-scripture {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--color-on-secondary-container);
+  margin-bottom: 8px;
+}
+
+.giving-citation {
+  font-size: 13px;
+  color: var(--color-on-secondary-container);
+  opacity: 0.8;
+  font-style: normal;
+}
+
+.card-giving-accounts .account-purpose {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--color-outline-variant);
+  padding-bottom: 14px;
+  margin-bottom: 18px;
+}
+
+.purpose-title {
+  font-family: var(--font-headline);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-on-surface);
+}
+
+.account-holder {
+  font-size: 12px;
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.account-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.account-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-surface-low);
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  transition: background-color var(--transition-fast);
+}
+
+.account-item:hover {
+  background-color: var(--color-surface-container);
+}
+
+.account-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.bank-name {
+  font-family: var(--font-headline);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-on-surface-variant);
+}
+
+.account-number {
+  font-family: var(--font-headline);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-on-surface);
+}
+
+.giving-info-footer {
+  font-size: 12px;
+  color: var(--color-outline);
+}
+
+/* --------------------------------------------------------------------------
+   9. TAB 4: 동행 (Connect) Details & Form Controls
+   -------------------------------------------------------------------------- */
+.card-welcome {
+  border-left: 4px solid var(--color-primary);
+}
+
+.welcome-text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-on-surface-variant);
+  text-align: justify;
+}
+
+.relative-container {
+  position: relative;
+  min-height: 300px;
+}
+
+/* Interactive Form controls */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-family: var(--font-headline);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-on-surface-variant);
+  margin-bottom: 8px;
+}
+
+.form-label .required {
+  color: var(--color-error);
+}
+
+.form-control {
+  width: 100%;
+  background-color: var(--color-surface-low);
+  border: 1px solid transparent;
+  border-radius: var(--radius-lg);
+  padding: 14px 16px;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--color-on-surface);
+  transition: border-color var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.form-control:focus {
+  outline: none;
+  background-color: var(--color-surface-lowest);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(63, 99, 85, 0.08);
+}
+
+.form-control.is-invalid {
+  border-color: var(--color-error);
+  background-color: var(--color-error-container);
+}
+
+.form-error {
+  display: none;
+  color: var(--color-error);
+  font-size: 12px;
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+.form-error.visible {
+  display: block;
+  animation: slide-down 0.2s ease-out;
+}
+
+/* Custom styled chips checkboxes */
+.chips-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip-checkbox {
+  cursor: pointer;
+}
+
+.chip-checkbox input[type="checkbox"] {
+  display: none;
+}
+
+.chip-label {
+  display: inline-block;
+  padding: 10px 18px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface-low);
+  border: 1px solid var(--color-outline-variant);
+  font-family: var(--font-headline);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-on-surface-variant);
+  transition: all var(--transition-fast);
+  user-select: none;
+}
+
+.chip-checkbox input[type="checkbox"]:checked + .chip-label {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-on-primary);
+  box-shadow: 0 4px 8px rgba(63, 99, 85, 0.15);
+}
+
+.chip-checkbox:hover .chip-label {
+  background-color: var(--color-surface-container);
+  border-color: var(--color-outline);
+}
+
+.chip-checkbox input[type="checkbox"]:checked:hover + .chip-label {
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+}
+
+/* Success Overlay styling */
+.success-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-surface-lowest);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-normal) ease-out;
+}
+
+.success-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.success-content {
+  text-align: center;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateY(20px);
+  transition: transform var(--transition-normal) ease-out;
+}
+
+.success-overlay.active .success-content {
+  transform: translateY(0);
+}
+
+.success-icon-wrapper {
+  background-color: var(--color-secondary-container);
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  margin-bottom: 20px;
+  box-shadow: 0 8px 16px rgba(107, 144, 128, 0.1);
+  animation: pop-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.success-title {
+  font-family: var(--font-headline);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.success-desc {
+  font-size: 14px;
+  color: var(--color-on-surface-variant);
+  margin-bottom: 24px;
+}
+
+/* --------------------------------------------------------------------------
+   10. Component Elements (Buttons, Toasts)
+   -------------------------------------------------------------------------- */
+.btn {
+  font-family: var(--font-headline);
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--radius-lg);
+  padding: 14px 24px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+  box-shadow: 0 4px 12px rgba(63, 99, 85, 0.15);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-secondary);
+  box-shadow: 0 6px 16px rgba(63, 99, 85, 0.22);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background-color: var(--color-surface-low);
+  color: var(--color-primary);
+  border: 1px solid var(--color-outline-variant);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-surface-container);
+  color: var(--color-secondary);
+  border-color: var(--color-outline);
+}
+
+.btn-sm {
+  padding: 8px 16px;
+  font-size: 13px;
+  border-radius: var(--radius-md);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-text {
+  background: none;
+  border: none;
+  color: var(--color-outline);
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color var(--transition-fast);
+}
+
+.btn-text:hover {
+  color: var(--color-primary);
+}
+
+/* Toast Notifications */
+.toast {
+  position: fixed;
+  bottom: 84px; /* Slightly above mobile bottom nav */
+  left: 50%;
+  transform: translateX(-50%) translateY(30px);
+  background-color: var(--color-primary);
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform var(--transition-normal) cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity var(--transition-normal);
+  font-family: var(--font-headline);
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   11. Mobile Bottom Navigation Menu
+   -------------------------------------------------------------------------- */
+.mobile-nav {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px; /* Aligned with app container */
+  height: 68px;
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid var(--color-outline-variant);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 500;
+  padding-bottom: env(safe-area-inset-bottom, 8px); /* Handle notch on newer iOS devices */
+}
+
+.nav-item {
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  height: 100%;
+  cursor: pointer;
+  color: var(--color-on-surface-variant);
+  transition: color var(--transition-fast);
+  padding: 8px 0;
+}
+
+.nav-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  margin-bottom: 2px;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+.nav-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.nav-label {
+  font-family: var(--font-headline);
+  font-size: 10px;
+  font-weight: 500;
+  transition: color var(--transition-fast);
+}
+
+/* Active bottom nav state matching screenshots */
+.nav-item.active {
+  color: var(--color-primary);
+}
+
+.nav-item.active .nav-icon-wrapper {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  box-shadow: 0 4px 8px rgba(63, 99, 85, 0.15);
+}
+
+.nav-item.active .nav-label {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* --------------------------------------------------------------------------
+   12. Keyframes & Animations
+   -------------------------------------------------------------------------- */
+@keyframes logo-pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.03); opacity: 0.95; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes heart-beat {
+  0% { transform: scale(1); }
+  14% { transform: scale(1.08); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.08); }
+  70% { transform: scale(1); }
+}
+
+@keyframes pop-in {
+  0% { transform: scale(0.7); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes slide-down {
+  0% { transform: translateY(-8px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   13. Responsive Adaptations (Tablet & Desktop Dashboard)
+   -------------------------------------------------------------------------- */
+@media (min-width: 768px) {
+  /* Expand App container limit for large screens */
+  .app-container {
+    max-width: 1024px;
+    box-shadow: none;
+    border-left: 1px solid var(--color-outline-variant);
+    border-right: 1px solid var(--color-outline-variant);
+  }
+
+  /* Desktop Header Adjustment */
+  .app-header {
+    position: sticky !important;
+    left: auto !important;
+    transform: none !important;
+    max-width: 1024px !important;
+    padding: 16px 40px !important;
+    background-color: rgba(247, 250, 249, 0.9) !important;
+    backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid var(--color-outline-variant) !important;
+    box-shadow: none !important;
+    height: auto !important;
+  }
+
+  .app-header.header-transparent-dark .brand-name {
+    color: var(--color-primary) !important;
+  }
+  
+  .app-header.header-transparent-dark .brand-sub {
+    color: var(--color-on-surface-variant) !important;
+  }
+
+  .header-brand {
+    position: static !important;
+    transform: none !important;
+    gap: 12px !important;
+    top: auto !important;
+    left: auto !important;
+  }
+
+  .church-logo {
+    width: 40px !important;
+    height: 40px !important;
+    border-color: var(--color-outline-variant) !important;
+  }
+
+  .brand-name {
+    font-size: 18px !important;
+    color: var(--color-primary) !important;
+  }
+
+  .brand-sub {
+    display: block !important;
+    font-size: 11px !important;
+    color: var(--color-on-surface-variant) !important;
+    opacity: 1 !important;
+    margin-top: -2px !important;
+  }
+
+  .tab-content {
+    padding-top: 0 !important;
+  }
+
+  .header-content {
+    height: 60px;
+    position: relative !important;
+  }
+
+  /* Enable desktop horizontal navigation tabs */
+  .desktop-nav {
+    display: flex;
+    gap: 16px;
+    background-color: var(--color-surface-low);
+    padding: 6px;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--color-outline-variant);
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+
+  .desktop-nav .nav-tab {
+    background: none;
+    border: none;
+    font-family: var(--font-headline);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 24px;
+    border-radius: var(--radius-full);
+    color: var(--color-on-surface-variant);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+  }
+
+  .desktop-nav .nav-tab.active {
+    background-color: var(--color-primary);
+    color: var(--color-on-primary);
+    box-shadow: 0 4px 8px rgba(63, 99, 85, 0.15);
+    font-weight: 700;
+  }
+
+  /* Main padding adjustment */
+  .app-main {
+    padding: 40px 40px 60px 40px;
+  }
+
+  /* Transform vertical stacks into multi-column layout dashboards */
+  .grid-layout {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 32px;
+    align-items: start;
+  }
+
+  /* Tab-specific multi-column setups */
+  #tab-worship .grid-layout .card-scripture {
+    grid-column: span 7;
+  }
+  
+  #tab-worship .grid-layout .card-order {
+    grid-column: span 5;
+  }
+
+  #tab-worship .grid-layout .card-last-sermon {
+    grid-column: span 12;
+  }
+
+  #tab-news .grid-layout .card-announcement:nth-child(1) {
+    grid-column: span 6;
+  }
+
+  #tab-news .grid-layout .card-announcement:nth-child(2) {
+    grid-column: span 6;
+  }
+
+  #tab-news .grid-layout .card-prayers {
+    grid-column: span 6;
+  }
+
+  #tab-news .grid-layout .card-gallery {
+    grid-column: span 6;
+  }
+
+  #tab-giving .grid-layout .card-giving-banner {
+    grid-column: span 5;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  #tab-giving .grid-layout .card-giving-accounts {
+    grid-column: span 7;
+  }
+
+  #tab-connect .grid-layout .card-welcome {
+    grid-column: span 5;
+  }
+
+  #tab-connect .grid-layout .card-form {
+    grid-column: span 7;
+  }
+
+  .hero-banner {
+    margin-top: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    border-radius: var(--radius-xl) !important;
+    padding: 40px 32px !important;
+  }
+
+  /* Hide Mobile Bottom Nav */
+  .mobile-nav {
+    display: none;
+  }
+
+  /* Reposition Toast notifications on desktop */
+  .toast {
+    bottom: 40px;
+  }
+}
