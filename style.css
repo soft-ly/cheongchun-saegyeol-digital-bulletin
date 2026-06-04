@@ -383,6 +383,7 @@ body {
   margin-top: calc(var(--spacing-stack-gap) * -1); /* Cancel main container top margin */
   margin-left: calc(var(--spacing-margin-page) * -1); /* Cancel main container left margin */
   margin-right: calc(var(--spacing-margin-page) * -1); /* Cancel main container right margin */
+  margin-bottom: var(--spacing-stack-gap);
   box-shadow: var(--shadow-level-1);
   color: #ffffff;
 }
