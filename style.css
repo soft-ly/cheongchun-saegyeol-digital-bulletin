@@ -945,175 +945,7 @@ body {
   text-align: justify;
 }
 
-.relative-container {
-  position: relative;
-  min-height: 300px;
-}
-
-/* Interactive Form controls */
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-label {
-  display: block;
-  font-family: var(--font-headline);
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--color-on-surface-variant);
-  margin-bottom: 8px;
-}
-
-.form-label .required {
-  color: var(--color-error);
-}
-
-.form-control {
-  width: 100%;
-  background-color: var(--color-surface-low);
-  border: 1px solid transparent;
-  border-radius: var(--radius-lg);
-  padding: 14px 16px;
-  font-family: inherit;
-  font-size: 15px;
-  color: var(--color-on-surface);
-  transition: border-color var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
-}
-
-.form-control:focus {
-  outline: none;
-  background-color: var(--color-surface-lowest);
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(63, 99, 85, 0.08);
-}
-
-.form-control.is-invalid {
-  border-color: var(--color-error);
-  background-color: var(--color-error-container);
-}
-
-.form-error {
-  display: none;
-  color: var(--color-error);
-  font-size: 12px;
-  margin-top: 6px;
-  font-weight: 500;
-}
-
-.form-error.visible {
-  display: block;
-  animation: slide-down 0.2s ease-out;
-}
-
-/* Custom styled chips checkboxes */
-.chips-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.chip-checkbox {
-  cursor: pointer;
-}
-
-.chip-checkbox input[type="checkbox"] {
-  display: none;
-}
-
-.chip-label {
-  display: inline-block;
-  padding: 10px 18px;
-  border-radius: var(--radius-full);
-  background-color: var(--color-surface-low);
-  border: 1px solid var(--color-outline-variant);
-  font-family: var(--font-headline);
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--color-on-surface-variant);
-  transition: all var(--transition-fast);
-  user-select: none;
-}
-
-.chip-checkbox input[type="checkbox"]:checked + .chip-label {
-  background-color: var(--color-primary);
-  border-color: var(--color-primary);
-  color: var(--color-on-primary);
-  box-shadow: 0 4px 8px rgba(63, 99, 85, 0.15);
-}
-
-.chip-checkbox:hover .chip-label {
-  background-color: var(--color-surface-container);
-  border-color: var(--color-outline);
-}
-
-.chip-checkbox input[type="checkbox"]:checked:hover + .chip-label {
-  background-color: var(--color-secondary);
-  border-color: var(--color-secondary);
-}
-
-/* Success Overlay styling */
-.success-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--color-surface-lowest);
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--transition-normal) ease-out;
-}
-
-.success-overlay.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.success-content {
-  text-align: center;
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transform: translateY(20px);
-  transition: transform var(--transition-normal) ease-out;
-}
-
-.success-overlay.active .success-content {
-  transform: translateY(0);
-}
-
-.success-icon-wrapper {
-  background-color: var(--color-secondary-container);
-  width: 72px;
-  height: 72px;
-  border-radius: var(--radius-full);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-primary);
-  margin-bottom: 20px;
-  box-shadow: 0 8px 16px rgba(107, 144, 128, 0.1);
-  animation: pop-in 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.success-title {
-  font-family: var(--font-headline);
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--color-primary);
-  margin-bottom: 8px;
-}
-
-.success-desc {
-  font-size: 14px;
-  color: var(--color-on-surface-variant);
-  margin-bottom: 24px;
-}
+/* Form styles have been removed */
 
 /* --------------------------------------------------------------------------
    10. Component Elements (Buttons, Toasts)
@@ -1481,10 +1313,14 @@ body {
   }
 
   #tab-connect .grid-layout .card-welcome {
+    grid-column: span 12;
+  }
+
+  #tab-connect .grid-layout .card-kakao {
     grid-column: span 5;
   }
 
-  #tab-connect .grid-layout .card-form {
+  #tab-connect .grid-layout .card-map {
     grid-column: span 7;
   }
 

@@ -308,6 +308,8 @@
 
       <!-- TAB 4: 동행 (Connect) -->
       <section id="tab-connect" class="tab-content">
+        <h1 class="section-main-title">함께하는 동행</h1>
+        
         <div class="grid-layout">
           <!-- Welcome Card -->
           <div class="card card-welcome">
@@ -323,83 +325,53 @@
               <h2 class="card-title">새가족 환영</h2>
             </div>
             <div class="card-body">
-              <p class="welcome-text">
-                청춘새결 교회에 처음 오신 분들을 진심으로 환영합니다. 아래 등록 신청서를 작성해주시면, 편안하게 공동체에 적응하실 수 있도록 돕겠습니다.
+              <p class="section-subtitle" style="margin-bottom: 0;">
+                저희 교회에 처음 오시는 분들을 진심으로 환영합니다.<br>
+                아래 오픈채팅방으로 언제든 편하게 문의해 주시거나, 예배 장소로 직접 찾아와 주시면 따뜻하게 맞이하겠습니다.
               </p>
             </div>
           </div>
 
-          <!-- Registration Form Card -->
-          <div class="card card-form">
-            <div class="card-header">
-              <h2 class="card-title">새가족 등록 신청</h2>
+          <!-- Kakao Open Chat Card -->
+          <div class="card card-kakao" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background-color: #FEE500; border-color: #FEE500;">
+            <div style="margin-bottom: 16px;">
+              <!-- Kakao Speech Bubble Icon -->
+              <svg viewBox="0 0 24 24" width="48" height="48" fill="#191919">
+                <path d="M12 3c-4.97 0-9 3.185-9 7.115 0 2.557 1.707 4.8 4.27 5.965-.337 1.15-.925 3.182-.958 3.32-.105.426.15.412.316.297.13-.088 2.06-1.39 4.02-2.756.76.104 1.54.158 2.352.158 4.97 0 9-3.184 9-7.115C21 6.185 16.97 3 12 3z"/>
+              </svg>
             </div>
-            <div class="card-body relative-container">
-              
-              <!-- Success State Overlay -->
-              <div id="form-success-overlay" class="success-overlay">
-                <div class="success-content">
-                  <div class="success-icon-wrapper">
-                    <svg viewBox="0 0 24 24" width="48" height="48" stroke="#3f6355" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                  </div>
-                  <h3 class="success-title">등록 신청이 완료되었습니다!</h3>
-                  <p class="success-desc">청춘새결교회의 가족이 되신 것을 환영합니다. 빠른 시일 내에 연락을 드리겠습니다.</p>
-                  <button id="success-close-btn" class="btn btn-primary">확인</button>
-                </div>
+            <h2 style="font-size: 22px; font-weight: 800; color: #191919; margin-bottom: 8px;">청춘새결 오픈채팅방</h2>
+            <p style="font-size: 15px; color: rgba(25,25,25,0.75); margin-bottom: 24px; font-weight: 500;">교회 관련 문의나 소통은<br>이곳에서 편하게 나눠요!</p>
+            <a href="https://open.kakao.com/o/gGyIvuxi" target="_blank" class="btn" style="background-color: #191919; color: #FEE500; border: none; font-weight: 700; width: 80%; border-radius: 12px; justify-content: center;">참여하기</a>
+          </div>
+
+          <!-- Map Card -->
+          <div class="card card-map" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
+            <div class="card-header" style="padding: 24px 24px 16px 24px; margin-bottom: 0;">
+              <div class="card-header-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
               </div>
-
-              <!-- Registration Form -->
-              <form id="connect-form" novalidate>
-                <div class="form-group">
-                  <label for="reg-name" class="form-label">이름 <span class="required">*</span></label>
-                  <input type="text" id="reg-name" class="form-control" placeholder="홍길동" required>
-                  <div class="form-error" id="error-name">이름을 입력해주세요.</div>
-                </div>
-
-                <div class="form-group">
-                  <label for="reg-phone" class="form-label">연락처 <span class="required">*</span></label>
-                  <input type="tel" id="reg-phone" class="form-control" placeholder="010-0000-0000" required>
-                  <div class="form-error" id="error-phone">올바른 연락처 형식을 입력해주세요.</div>
-                </div>
-
-                <div class="form-group">
-                  <label for="reg-email" class="form-label">이메일</label>
-                  <input type="email" id="reg-email" class="form-control" placeholder="example@email.com">
-                  <div class="form-error" id="error-email">올바른 이메일 주소를 입력해주세요.</div>
-                </div>
-
-                <div class="form-group">
-                  <label class="form-label">관심 분야 (다중 선택 가능)</label>
-                  <div class="chips-group">
-                    <label class="chip-checkbox">
-                      <input type="checkbox" name="interests" value="worship">
-                      <span class="chip-label">예배 참석</span>
-                    </label>
-                    <label class="chip-checkbox">
-                      <input type="checkbox" name="interests" value="smallgroup">
-                      <span class="chip-label">소그룹 모임</span>
-                    </label>
-                    <label class="chip-checkbox">
-                      <input type="checkbox" name="interests" value="volunteer">
-                      <span class="chip-label">봉사활동</span>
-                    </label>
-                    <label class="chip-checkbox">
-                      <input type="checkbox" name="interests" value="counsel">
-                      <span class="chip-label">신앙 상담</span>
-                    </label>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="reg-message" class="form-label">남기고 싶은 말</label>
-                  <textarea id="reg-message" class="form-control" rows="4" placeholder="궁금한 점이나 남기고 싶으신 말씀을 자유롭게 적어주세요."></textarea>
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-block">등록 신청하기</button>
-              </form>
-
+              <h2 class="card-title">오시는 길</h2>
+            </div>
+            <div style="padding: 0 24px 24px 24px;">
+              <p style="font-size: 15px; color: var(--color-on-surface-variant); margin-bottom: 0; font-weight: 500; display: flex; align-items: center; gap: 8px;">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary); flex-shrink: 0;"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                충북 보은군 보은읍 비룡소길 11 1층 피자이레
+              </p>
+            </div>
+            <div class="map-wrapper" style="width: 100%; flex: 1; min-height: 300px; display: flex;">
+              <iframe 
+                src="https://maps.google.com/maps?q=충북%20보은군%20보은읍%20비룡소길%2011%201층%20피자이레&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                width="100%" 
+                height="100%" 
+                style="border:0; flex: 1;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
             </div>
           </div>
         </div>
