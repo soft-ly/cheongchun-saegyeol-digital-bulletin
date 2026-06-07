@@ -1422,7 +1422,7 @@ body {
   /* Transform vertical stacks into multi-column layout dashboards */
   .grid-layout {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
+    grid-template-columns: repeat(12, minmax(0, 1fr));
     gap: 32px;
     align-items: start;
   }
