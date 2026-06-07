@@ -338,6 +338,9 @@ body {
   transition: transform var(--transition-normal), box-shadow var(--transition-normal);
   position: relative;
   overflow: hidden;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: keep-all;
 }
 
 .card:hover {
