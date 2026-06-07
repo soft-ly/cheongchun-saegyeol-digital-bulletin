@@ -292,10 +292,15 @@ body {
   transform: translateY(0);
 }
 
-.grid-layout,
-.two-col-layout {
+.grid-layout {
   display: flex;
   flex-direction: column;
+  gap: var(--spacing-stack-gap);
+}
+
+.two-col-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--spacing-stack-gap);
 }
 
@@ -1429,14 +1434,13 @@ body {
   }
 
   .two-col-layout {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 32px;
     align-items: stretch;
   }
   
   .two-col-layout > .card {
-    flex: 1;
     min-width: 0;
   }
 
