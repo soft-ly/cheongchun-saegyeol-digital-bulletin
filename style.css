@@ -1262,7 +1262,7 @@ body {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
     gap: 32px;
-    align-items: stretch;
+    align-items: start;
   }
 
   .two-col-layout {
