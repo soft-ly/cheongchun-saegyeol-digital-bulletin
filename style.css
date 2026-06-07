@@ -1313,7 +1313,7 @@ body {
   }
 
   #tab-connect .grid-layout .card-welcome {
-    grid-column: span 12;
+    grid-column: span 7;
   }
 
   #tab-connect .grid-layout .card-kakao {
@@ -1321,7 +1321,7 @@ body {
   }
 
   #tab-connect .grid-layout .card-map {
-    grid-column: span 7;
+    grid-column: span 12;
   }
 
   .hero-banner {
