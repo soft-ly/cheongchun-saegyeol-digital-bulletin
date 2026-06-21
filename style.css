@@ -1293,11 +1293,11 @@ body {
     grid-column: span 6;
   }
 
-  #tab-news .grid-layout .card-prayers {
+  #tab-news .grid-layout .card-blog-link {
     grid-column: span 6;
   }
 
-  #tab-news .grid-layout .card-gallery {
+  #tab-news .grid-layout .card-instagram-link {
     grid-column: span 6;
   }
 
@@ -1341,4 +1341,20 @@ body {
   .toast {
     bottom: 40px;
   }
+}
+
+/* Link Card Hover Effects */
+.card-blog-link:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(63, 99, 85, 0.25);
+}
+
+.card-instagram-link:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(214, 51, 132, 0.3);
+}
+
+.card-blog-link,
+.card-instagram-link {
+  border-radius: var(--radius-lg, 16px);
 }
