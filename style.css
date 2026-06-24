@@ -1383,33 +1383,78 @@ body {
   opacity: 0.7;
 }
 
-.about-intro {
+.about-intro-wrapper {
+  padding: 0 20px 48px;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.about-intro-card {
+  background: var(--color-surface-container);
+  border-radius: 24px;
+  padding: 40px 32px;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.04);
+  border: 1px solid var(--color-outline-variant);
   text-align: center;
-  margin: 0 auto 40px;
-  max-width: 600px;
-  padding: 0 24px;
-  font-family: 'Gowun Batang', serif;
-  color: var(--color-on-surface);
 }
 
 .about-intro-lead {
-  font-size: 20px;
-  font-weight: 700;
-  margin-bottom: 16px;
+  font-family: 'Gowun Dodum', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
   color: var(--color-primary);
+  margin-bottom: 24px;
+  position: relative;
+  display: inline-block;
+}
+
+.about-intro-lead::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: var(--color-primary);
+  margin: 12px auto 0;
+  border-radius: 2px;
+  opacity: 0.5;
+}
+
+.about-intro-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-family: 'Gowun Batang', serif;
 }
 
 .about-intro-line {
-  font-size: 16px;
-  line-height: 1.8;
-  margin-bottom: 8px;
-  word-break: keep-all;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--color-on-surface);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 }
 
 .intro-keyword {
   font-family: 'Gowun Dodum', sans-serif;
+  font-size: 13px;
   font-weight: 800;
-  margin-right: 4px;
+  color: var(--kw-color);
+  background: var(--kw-bg);
+  padding: 4px 14px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  display: inline-block;
+}
+
+@media (min-width: 768px) {
+  .about-intro-line {
+    flex-direction: row;
+    justify-content: center;
+    font-size: 17px;
+  }
 }
 
 .about-values-container {
