@@ -1285,19 +1285,19 @@ body {
     grid-column: span 6;
   }
 
-  #tab-news .grid-layout .card-announcement:nth-child(1) {
+  #tab-connect .grid-layout .card-announcement:nth-child(1) {
     grid-column: span 6;
   }
 
-  #tab-news .grid-layout .card-announcement:nth-child(2) {
+  #tab-connect .grid-layout .card-announcement:nth-child(2) {
     grid-column: span 6;
   }
 
-  #tab-news .grid-layout .card-blog-link {
+  #tab-connect .grid-layout .card-blog-link {
     grid-column: span 6;
   }
 
-  #tab-news .grid-layout .card-instagram-link {
+  #tab-connect .grid-layout .card-instagram-link {
     grid-column: span 6;
   }
 
@@ -1357,4 +1357,146 @@ body {
 .card-blog-link,
 .card-instagram-link {
   border-radius: var(--radius-lg, 16px);
+}
+
+/* ========== About Tab Styles ========== */
+
+.about-hero {
+  text-align: center;
+  padding: 48px 24px 32px;
+}
+
+.about-church-name {
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--color-primary);
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+
+.about-church-tagline {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-on-surface-variant);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.about-values-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 16px 40px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.about-value-card {
+  background: var(--color-surface-container);
+  border-radius: 20px;
+  padding: 32px 28px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  border-left: 4px solid var(--accent);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-value-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+}
+
+.value-number {
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--accent);
+  opacity: 0.2;
+  line-height: 1;
+  min-width: 40px;
+  flex-shrink: 0;
+}
+
+.value-content {
+  flex: 1;
+}
+
+.value-eng {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--accent);
+  margin-bottom: 2px;
+  letter-spacing: -0.3px;
+}
+
+.value-kor {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--color-on-surface-variant);
+  margin-bottom: 12px;
+  opacity: 0.8;
+}
+
+.value-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-on-surface-variant);
+  margin-bottom: 16px;
+}
+
+.value-verses {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.value-verses blockquote {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--color-outline);
+  padding: 10px 14px;
+  background: var(--accent-light);
+  border-radius: 10px;
+  margin: 0;
+  font-style: italic;
+}
+
+.value-verses cite {
+  display: block;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  color: var(--accent);
+  margin-top: 4px;
+  opacity: 0.7;
+}
+
+/* Mobile About Adjustments */
+@media (max-width: 767px) {
+  .about-hero {
+    padding: 32px 20px 24px;
+  }
+
+  .about-church-name {
+    font-size: 28px;
+  }
+
+  .about-church-tagline {
+    font-size: 12px;
+  }
+
+  .about-value-card {
+    padding: 24px 20px;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .value-number {
+    font-size: 24px;
+  }
+
+  .value-eng {
+    font-size: 18px;
+  }
 }

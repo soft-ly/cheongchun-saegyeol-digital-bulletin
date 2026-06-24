@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Find active tab
     const activeTabEl = document.querySelector('.mobile-nav .nav-item.active, .desktop-nav .nav-tab.active');
-    const activeTab = activeTabEl ? activeTabEl.getAttribute('data-tab') : 'worship';
+    const activeTab = activeTabEl ? activeTabEl.getAttribute('data-tab') : 'about';
     
     if (isMobile) {
       if (scrollY > 20) {
