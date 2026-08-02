@@ -4,6 +4,10 @@ import xml.etree.ElementTree as ET
 import re
 import html
 import os
+import ssl
+
+# Bypass SSL certificate verification for local development
+ssl._create_default_https_context = ssl._create_unverified_context
 
 # 1. Configuration
 CHANNEL_ID = "UC56pX25Nm-DtOiY-MF0Z6wA"
@@ -268,7 +272,17 @@ def main():
             print("No video entries found in RSS feed")
             return
             
-        latest_entry = entries[0]
+        latest_entry = None
+        for entry in entries:
+            title = entry.find('atom:title', namespaces).text
+            if "|" in title:
+                latest_entry = entry
+                break
+                
+        if latest_entry is None:
+            print("No valid sermon video found in RSS feed")
+            return
+            
         video_id = latest_entry.find('yt:videoId', namespaces).text
         full_title = latest_entry.find('atom:title', namespaces).text
         published = latest_entry.find('atom:published', namespaces).text
