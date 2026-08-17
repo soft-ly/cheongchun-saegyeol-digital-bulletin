@@ -2,8 +2,8 @@ name: Auto Update Worship Video
 
 on:
   schedule:
-    # Run every Tuesday at 00:00 UTC (which is 09:00 KST)
-    - cron: '0 0 * * 2'
+    # Run every Tuesday at 11:00 UTC (which is 20:00 KST / 8:00 PM KST)
+    - cron: '0 11 * * 2'
   workflow_dispatch: # Allows manual run in the GitHub Actions tab
 
 permissions:
