@@ -54,10 +54,22 @@ python3 -m http.server 3000
 
 ---
 
+## 🔄 매주 자동 업데이트
+
+`.github/workflows/deploy.yml`이 매주 화요일 20:00 KST(GitHub 사정으로 몇 시간 늦을 수 있음)에 `scripts/auto_update_sermon.py`를 실행해 유튜브 채널의 최신 **주일예배 풀 설교 영상**(제목 형식 `제목｜본문 | 설교자`)으로 설교 제목·썸네일·영상·성경 봉독 본문·요약을 갱신하고, 변경분을 커밋한 뒤 GitHub Pages에 배포합니다. 쇼츠처럼 본문 구절이 없는 영상과 금요·수요·새벽 예배(제목·설명에 해당 단어 포함)는 건너뜁니다.
+
+- 영상 제목이 위 형식이 아니거나 본문을 해석하지 못하면 실행이 **실패(빨간 X)** 하므로 Actions 탭/알림 메일을 확인하세요.
+- 수동 실행: Actions → *Update sermon and deploy* → Run workflow.
+- 로컬 확인: `python3 scripts/auto_update_sermon.py` (index.html이 직접 수정됩니다).
+- 공지사항·기도 제목 등 나머지 내용은 `index.html`을 직접 수정합니다.
+
+---
+
 ## 📂 파일 구조 (File Structure)
 
 - `index.html` - 시맨틱 마크업 및 SEO 태그가 포함된 웹 메인 파일
 - `style.css` - Serene Grace 토큰, 모바일/PC 반응형 스타일, 모핑 헤더 애니메이션 정의
 - `app.js` - 내비게이션 동기화, 클립보드 복사 토스트, 새가족 폼 유효성 검사 등 인터랙션 로직
+- `scripts/auto_update_sermon.py` - 주간 설교 자동 갱신 스크립트
 - `assets/` - 교회 공식 로고 이미지 및 갤러리 미디어 자산
 - `serene_grace/DESIGN.md` - 원본 디자인 시스템 스타일 가이드라인
