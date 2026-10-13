@@ -132,11 +132,25 @@ SKIP_KEYWORDS = ("http", "instagram", "naver", "pf.kakao", "youtube", "계좌", 
 LABEL_LINE_RE = re.compile(r"^[가-힣 ]{2,8}\s*[:：]")  # "찬양인도 : …", "촬영 : …"
 
 
+def cut_after_scripture_line(description):
+    """Keep the description up to and including its 본문 line (credits, hashtags etc. follow it)."""
+    lines = (description or "").splitlines()
+    for i, line in enumerate(lines):
+        if "본문" in line or line.strip().startswith("📖"):
+            end = i + 1
+            if not re.search(r"\d", line):  # "📖 본문" alone: the reference is on the next non-empty line
+                while end < len(lines) and not lines[end].strip():
+                    end += 1
+                end += 1
+            return lines[:end]
+    return lines
+
+
 def clean_description_to_summary(description):
     paragraphs, current = [], []
-    for raw in (description or "").splitlines():
+    for raw in cut_after_scripture_line(description):
         line = raw.strip()
-        if line and (any(k in line.lower() for k in SKIP_KEYWORDS) or LABEL_LINE_RE.match(line)):
+        if line and (line.startswith("#") or any(k in line.lower() for k in SKIP_KEYWORDS) or LABEL_LINE_RE.match(line)):
             continue
         if line:
             current.append(line)
